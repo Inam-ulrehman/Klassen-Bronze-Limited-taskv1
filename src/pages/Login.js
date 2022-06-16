@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormRow from '../components/FormRow'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import 'animate.css'
+
 import {
   handleFormToggleButton,
   handleFormValue,
@@ -61,7 +63,7 @@ const Login = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} className='form'>
-        <h3>{user.isMember ? 'Login' : 'Register'}</h3>
+        <h3 className='title'>{user.isMember ? 'Login' : 'Register'}</h3>
         {/* email input */}
 
         {!user.isMember && (

@@ -13,6 +13,7 @@ const initialState = {
   isMember: true,
   isLogin: false,
   isLoginToggle: false,
+  isMenuOpen: false,
   storeUser: getUserFromLocalStorage() || null,
 }
 
@@ -45,6 +46,9 @@ const userSlice = createSlice({
     navigateUser: (state) => {
       console.log('hello navigate ')
     },
+    toggleSideMenu: (state) => {
+      state.isMenuOpen = !state.isMenuOpen
+    },
   },
   extraReducers: {
     [registerUser.pending]: (state) => {},
@@ -68,6 +72,10 @@ const userSlice = createSlice({
     [loginUser.rejected]: (state) => {},
   },
 })
-export const { handleFormValue, handleFormToggleButton, navigateUser } =
-  userSlice.actions
+export const {
+  handleFormValue,
+  handleFormToggleButton,
+  navigateUser,
+  toggleSideMenu,
+} = userSlice.actions
 export default userSlice.reducer

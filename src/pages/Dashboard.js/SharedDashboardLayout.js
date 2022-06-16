@@ -1,14 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 import { Navbar, Sidebar } from '../../components/navbar'
 
 const SharedDashboardLayout = () => {
+  const { isMenuOpen } = useSelector((state) => {
+    return state.user
+  })
   return (
     <Wrapper>
       <Navbar />
       <div className='container-dashboard-outlet'>
-        <Sidebar />
+        {isMenuOpen && <Sidebar />}
         <div className='outlet'>
           <Outlet />
         </div>
@@ -16,9 +20,5 @@ const SharedDashboardLayout = () => {
     </Wrapper>
   )
 }
-const Wrapper = styled.section`
-  .outlet {
-    margin-left: 170px;
-  }
-`
+const Wrapper = styled.section``
 export default SharedDashboardLayout

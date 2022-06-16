@@ -6,6 +6,7 @@ import {
 } from '../../../utils.js/localStorage'
 
 const initialState = {
+  name: '',
   task: '',
   isModalOpen: false,
   type: '',
@@ -43,6 +44,7 @@ const jeffTaskSlice = createSlice({
       state.isEditing = true
     },
     clearJeffTask: (state) => {
+      state.name = ''
       state.task = ''
       state.isEditing = false
     },

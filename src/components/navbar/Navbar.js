@@ -1,27 +1,59 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleSideMenu } from '../../features/user/userSlice'
+import { GiHamburgerMenu } from 'react-icons/gi'
 const Navbar = () => {
+  const dispatch = useDispatch()
   const { storeUser } = useSelector((state) => state.user)
+  // handle sideBar
+  const handleToggle = () => {
+    dispatch(toggleSideMenu())
+  }
   return (
     <Wrapper>
-      <div className='navbar'>
-        <p>Welcome {storeUser?.name}</p>
-        <p>profile</p>
-        <button type='button' className='btn'>
-          <Link to='/'>LogOut</Link>
-        </button>
+      <div className='nav-bar'>
+        <ul className='nav-container'>
+          <li>
+            Welcome, <span>{storeUser?.name}</span>{' '}
+          </li>
+
+          <li>
+            <button type='button' className='btn'>
+              <Link to='/'>LogOut</Link>
+            </button>
+          </li>
+          <li>
+            <button className='btn' type='button' onClick={handleToggle}>
+              <GiHamburgerMenu />
+            </button>
+          </li>
+        </ul>
       </div>
     </Wrapper>
   )
 }
 const Wrapper = styled.nav`
-  margin-left: 170px;
-  margin-right: 170px;
-  .navbar {
-    text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-1);
+  .nav-container {
+    display: flex;
+    @media (max-width: 678px) {
+      justify-content: space-between;
+    }
+    @media (min-width: 678px) {
+      flex-direction: row-reverse;
+    }
+    li {
+      @media (min-width: 678px) {
+        margin-right: 2rem;
+      }
+      span {
+        color: var(--primary-7);
+      }
+    }
   }
 `
 export default Navbar

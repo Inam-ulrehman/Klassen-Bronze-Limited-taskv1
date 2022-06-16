@@ -127,19 +127,21 @@ ul {
   padding: 0;
 }
 
-.img {
-  /* width: 250px;
-  height: 200px; */
+/* .img {
+  width: 250px;
+  height: 200px;
   max-width: 100%;
   display: block;
   object-fit: cover;
 }
 .img-container {
-  /* max-width: 300px;
+  max-width: 300px;
   max-height: 300px;
-  margin: 0 auto; */
+
+  margin: 0 auto;
+
   overflow: hidden;
-}
+} */
 
 /* buttons */
 
