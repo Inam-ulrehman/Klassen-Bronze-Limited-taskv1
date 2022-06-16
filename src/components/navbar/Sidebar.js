@@ -32,10 +32,10 @@ const Sidebar = () => {
 const Wrapper = styled.section`
   position: fixed;
   background-color: var(--primary-1);
-  width: 100px;
+  width: 200px;
 
   @media (min-width: 768px) {
-    width: 150px;
+    width: 300px;
   }
   top: 0;
   height: 100vh;

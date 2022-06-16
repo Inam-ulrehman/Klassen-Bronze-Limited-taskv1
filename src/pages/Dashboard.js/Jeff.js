@@ -183,7 +183,7 @@ const Jeff = () => {
                 <article className='single-card' key={id}>
                   <div className='informationHandler'>
                     <div className='header'>
-                      <h3 className='title'>{name}</h3>
+                      <h3 className='title '>{name}</h3>
                       <div className='title-underline'></div>
                     </div>
                     <div className='body'>
@@ -191,7 +191,7 @@ const Jeff = () => {
                     </div>
                     <div className='footer'>
                       <p>Created at : {moment(id).format('MMM Do YY')}</p>
-                      <p> {type}</p>
+                      <p className={type}> {type}</p>
                     </div>
                   </div>
                   <div className='btnHandler'>
@@ -224,7 +224,7 @@ const Jeff = () => {
 const Wrapper = styled.main`
   .form {
     @media (max-width: 678px) {
-      height: 230px;
+      height: 300px;
       margin-top: 0px;
     }
     .title-h3 {
@@ -282,8 +282,20 @@ const Wrapper = styled.main`
     }
   }
   .btnHandler {
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
+  }
+  .Less-Important {
+    background-color: var(--green-light);
+  }
+  .Important {
+    background-color: var(--red-light);
+  }
+  .Very-Important {
+    background-color: var(--red-dark);
+
+    color: white;
   }
 `
 export default Jeff

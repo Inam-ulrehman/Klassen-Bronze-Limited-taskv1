@@ -10,7 +10,7 @@ const initialState = {
   task: '',
   isModalOpen: false,
   type: '',
-  typeOptions: ['Options', 'less-Important', 'Important', 'veryImportant'],
+  typeOptions: ['Options', 'Less-Important', 'Important', 'Very-Important'],
   editId: '',
   isEditing: false,
   localJeffTask: getJeffFromLocalStorage() || [],
