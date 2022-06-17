@@ -45,3 +45,21 @@ export const removeWendyAllTaskFromLocalStorage = () => {
 }
 
 // ============================
+
+// Tom Data handle
+
+export const setTomInLocalStorage = (tom) => {
+  localStorage.setItem('tom', JSON.stringify(tom))
+}
+
+export const getTomFromLocalStorage = () => {
+  const result = localStorage.getItem('tom')
+  const tom = result && JSON.parse(result)
+  return tom
+}
+
+export const removeTomAllTaskFromLocalStorage = () => {
+  localStorage.removeItem('tom')
+}
+
+// ============================
