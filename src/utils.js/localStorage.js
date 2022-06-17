@@ -27,3 +27,21 @@ export const removeJeffAllTaskFromLocalStorage = () => {
 }
 
 // ============================
+
+// Wendy Data handle
+
+export const setWendyInLocalStorage = (wendy) => {
+  localStorage.setItem('wendy', JSON.stringify(wendy))
+}
+
+export const getWendyFromLocalStorage = () => {
+  const result = localStorage.getItem('wendy')
+  const wendy = result && JSON.parse(result)
+  return wendy
+}
+
+export const removeWendyAllTaskFromLocalStorage = () => {
+  localStorage.removeItem('wendy')
+}
+
+// ============================

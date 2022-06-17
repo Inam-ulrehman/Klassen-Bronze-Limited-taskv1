@@ -46,7 +46,7 @@ html {
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
   /* rest of the vars */
-  --backgroundColor: var(--grey-05);
+  --backgroundColor: var(--grey-1);
   --textColor: var(--grey-9);
   --radius: 0.25rem;
   --letterSpacing: 1px;
