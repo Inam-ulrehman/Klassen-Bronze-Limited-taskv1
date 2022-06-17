@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -13,6 +13,7 @@ import {
   removeAllTaskValues,
   setJeffValuesInStore,
 } from '../../features/user/task/jeffTaskSlice'
+import { toggleTaskBar } from '../../features/user/userSlice'
 
 const Jeff = () => {
   const dispatch = useDispatch()
@@ -67,12 +68,21 @@ const Jeff = () => {
   // handle edit
   const handleEdit = (id) => {
     dispatch(editJeffTask(id))
+    dispatch(toggleTaskBar())
   }
   // handle removeAllTask
   const handleRemoveAllTask = () => {
     // dispatch(removeAllTaskValues())
     dispatch(jeffOpenModal())
   }
+
+  // handle taskBar toggle
+  // const handleTaskBarToggle = () => {
+  //   dispatch(toggleTaskBar())
+  // }
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }, [isTaskOpen])
   return (
     <Wrapper>
       {isModalOpen && (
@@ -181,6 +191,21 @@ const Jeff = () => {
           </button>
         </div>
       )}
+
+      {localJeffTask.length < 1 && (
+        <div>
+          <p
+            className='title'
+            style={{
+              backgroundColor: 'green',
+              color: 'white',
+              margin: '0 auto',
+            }}
+          >
+            Good job !!! there isn't any pending task....
+          </p>
+        </div>
+      )}
       {/* Cart containers... */}
 
       <div className='task-container'>
@@ -206,7 +231,9 @@ const Jeff = () => {
                   </div>
                   <div className='btnHandler'>
                     <button
-                      onClick={() => handleEdit(id)}
+                      onClick={() => {
+                        handleEdit(id)
+                      }}
                       type='button'
                       className='btn btn-edit alert-success '
                     >

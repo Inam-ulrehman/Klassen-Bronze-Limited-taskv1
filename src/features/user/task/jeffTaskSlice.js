@@ -39,6 +39,7 @@ const jeffTaskSlice = createSlice({
     editJeffTask: (state, { payload }) => {
       console.log(payload)
       let newList = state.localJeffTask.find((item) => item.id === payload)
+      state.name = newList.name
       state.task = newList.task
       state.editId = newList.id
       state.isEditing = true
