@@ -81,3 +81,20 @@ export const removeSalesRepAllTaskFromLocalStorage = () => {
 }
 
 // ============================
+// Office Data handle
+
+export const setOfficeInLocalStorage = (office) => {
+  localStorage.setItem('office', JSON.stringify(office))
+}
+
+export const getOfficeFromLocalStorage = () => {
+  const result = localStorage.getItem('office')
+  const office = result && JSON.parse(result)
+  return office
+}
+
+export const removeOfficeAllTaskFromLocalStorage = () => {
+  localStorage.removeItem('office')
+}
+
+// ============================
