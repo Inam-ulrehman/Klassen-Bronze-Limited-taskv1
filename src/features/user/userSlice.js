@@ -14,6 +14,7 @@ const initialState = {
   isLogin: false,
   isLoginToggle: false,
   isMenuOpen: false,
+  isTaskOpen: false,
   storeUser: getUserFromLocalStorage() || null,
 }
 
@@ -49,6 +50,9 @@ const userSlice = createSlice({
     toggleSideMenu: (state) => {
       state.isMenuOpen = !state.isMenuOpen
     },
+    toggleTaskBar: (state) => {
+      state.isTaskOpen = !state.isTaskOpen
+    },
   },
   extraReducers: {
     [registerUser.pending]: (state) => {},
@@ -77,5 +81,6 @@ export const {
   handleFormToggleButton,
   navigateUser,
   toggleSideMenu,
+  toggleTaskBar,
 } = userSlice.actions
 export default userSlice.reducer

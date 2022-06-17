@@ -26,12 +26,13 @@ const Jeff = () => {
     isEditing,
     isModalOpen,
   } = useSelector((state) => state.jeff)
+  const { isTaskOpen } = useSelector((state) => state.user)
 
   // handleSubmit
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!name || !task || !type) {
-      return toast.info('Please add some text...', {
+      return toast.info('Please fill in all the fields...', {
         position: 'top-center',
       })
     }
@@ -60,6 +61,7 @@ const Jeff = () => {
   // handle delete
   const handleDelete = (id) => {
     dispatch(deleteJeffTask(id))
+    toast.info('Task deleted...')
   }
 
   // handle edit
@@ -84,7 +86,7 @@ const Jeff = () => {
                   dispatch(jeffCloseModal())
                 }}
                 type='button'
-                className='btn alert-danger'
+                className='btn btn-modal-yes alert-danger'
               >
                 yes
               </button>
@@ -93,7 +95,7 @@ const Jeff = () => {
                   dispatch(jeffCloseModal())
                 }}
                 type='button'
-                className='btn alert-success'
+                className='btn btn-modal-no alert-success'
               >
                 no
               </button>
@@ -102,76 +104,84 @@ const Jeff = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className='form'>
-        <h3 className='title title-h3'>
-          {isEditing ? 'Editing Task' : 'Add Task'}
-        </h3>
-        <div className='title-underline'></div>
-        <div>
-          {/* name Input */}
-          <label htmlFor='name' className='form-label'>
-            Task Name
-          </label>
+      {/* Task bar form */}
 
-          <input
-            className='form-input'
-            type='text'
-            name='name'
-            id='name'
-            value={name}
-            onChange={handleChange}
-          />
+      {isTaskOpen && (
+        <form onSubmit={handleSubmit} className='form'>
+          <h3 className='title title-h3'>
+            {isEditing ? 'Editing Task' : 'Add Task'}
+          </h3>
+          <div className='title-underline'></div>
+          <div>
+            {/* name Input */}
+            <label htmlFor='name' className='form-label'>
+              Task Name
+            </label>
 
-          {/* task Input */}
-          <label htmlFor='task' className='form-label'>
-            Task
-          </label>
-          <textarea
-            type='text'
-            name='task'
-            id='task'
-            value={task}
-            onChange={handleChange}
-            className='form-textarea'
-          />
-        </div>
-        {/* type input */}
-        <div>
-          <label htmlFor='type' className='form-label'>
-            type
-          </label>
-          <select
-            name='type'
-            id='type'
-            value={type}
-            onChange={handleChange}
-            className='form-select'
-          >
-            {typeOptions.map((value, index) => {
-              return (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              )
-            })}
-          </select>
-        </div>
-        <button type='submit' className='btn btn-block'>
-          Submit Task
-        </button>
-      </form>
+            <input
+              className='form-input'
+              type='text'
+              name='name'
+              id='name'
+              value={name}
+              onChange={handleChange}
+            />
+
+            {/* task Input */}
+            <label htmlFor='task' className='form-label'>
+              Task
+            </label>
+            <textarea
+              type='text'
+              name='task'
+              id='task'
+              value={task}
+              onChange={handleChange}
+              className='form-textarea'
+            />
+          </div>
+          {/* type input */}
+          <div>
+            <label htmlFor='type' className='form-label'>
+              type
+            </label>
+            <select
+              name='type'
+              id='type'
+              value={type}
+              onChange={handleChange}
+              className='form-select'
+            >
+              {typeOptions.map((value, index) => {
+                return (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                )
+              })}
+            </select>
+          </div>
+          <button type='submit' className='btn btn-block'>
+            Submit Task
+          </button>
+        </form>
+      )}
+
+      <h5 className='title'>Task given by Jeff</h5>
+      <div className='title-underline'></div>
       <hr />
       {localJeffTask.length > 0 && (
-        <p className='title'>
+        <div className='title'>
           <button
-            className='btn alert-danger'
+            className='btn btn-remove-all  alert-danger'
             type='button '
             onClick={handleRemoveAllTask}
           >
             Remove all task
           </button>
-        </p>
+        </div>
       )}
+      {/* Cart containers... */}
 
       <div className='task-container'>
         <div className='cards-holder'>
@@ -198,7 +208,7 @@ const Jeff = () => {
                     <button
                       onClick={() => handleEdit(id)}
                       type='button'
-                      className='btn '
+                      className='btn btn-edit alert-success '
                     >
                       Edit
                     </button>
@@ -207,7 +217,7 @@ const Jeff = () => {
                         handleDelete(id)
                       }}
                       type='button'
-                      className='btn alert-danger'
+                      className='btn btn-delete alert-danger'
                     >
                       Delete
                     </button>
@@ -238,12 +248,51 @@ const Wrapper = styled.main`
       }
     }
   }
+  .btn-remove-all {
+    margin-bottom: 1rem;
+    :hover {
+      color: var(--white);
+      background-color: var(--red-dark);
+    }
+  }
+  .btn-delete {
+    :hover {
+      color: var(--white);
+      background-color: var(--red-dark);
+    }
+  }
+  .btn-edit {
+    :hover {
+      color: var(--white);
+      background-color: var(--green-dark);
+    }
+  }
+  .btn-modal-yes {
+    margin-right: 3rem;
+    :hover {
+      background-color: var(--red-dark);
+      color: var(--white);
+    }
+  }
+  .btn-modal-no {
+    :hover {
+      background-color: var(--green-dark);
+      color: var(--white);
+    }
+  }
   .cards-holder {
     @media (min-width: 678px) {
       display: grid;
       grid-template-columns: 1fr 1fr;
       margin: 0 auto;
       max-width: var(--fixed-width);
+      gap: 1rem;
+    }
+    @media (min-width: 1126px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: 0 auto;
+      max-width: var(--max-width);
       gap: 1rem;
     }
   }

@@ -2,10 +2,14 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { sidebarLink } from '../../utils.js/data'
-
 import { MdAddBusiness } from 'react-icons/md'
-
+import { toggleSideMenu } from '../../features/user/userSlice'
+import { useDispatch } from 'react-redux'
 const Sidebar = () => {
+  const dispatch = useDispatch()
+  const handleToggle = () => {
+    dispatch(toggleSideMenu())
+  }
   return (
     <Wrapper>
       <div className='logo'>
@@ -18,7 +22,12 @@ const Sidebar = () => {
         {sidebarLink.map((item) => {
           const { id, icon, name, path } = item
           return (
-            <NavLink className='sidebar-nav' key={id} to={path}>
+            <NavLink
+              onClick={handleToggle}
+              className='sidebar-nav'
+              key={id}
+              to={path}
+            >
               {icon}
               {name}
             </NavLink>

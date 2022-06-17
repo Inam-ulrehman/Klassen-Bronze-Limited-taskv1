@@ -2,14 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleSideMenu } from '../../features/user/userSlice'
+import { toggleSideMenu, toggleTaskBar } from '../../features/user/userSlice'
 import { GiHamburgerMenu } from 'react-icons/gi'
 const Navbar = () => {
   const dispatch = useDispatch()
-  const { storeUser } = useSelector((state) => state.user)
+  const { storeUser, isTaskOpen } = useSelector((state) => state.user)
+
   // handle sideBar
   const handleToggle = () => {
     dispatch(toggleSideMenu())
+  }
+  // handle TaskBar
+  const handleTaskBarToggle = () => {
+    dispatch(toggleTaskBar())
   }
   return (
     <Wrapper>
@@ -17,6 +22,11 @@ const Navbar = () => {
         <ul className='nav-container'>
           <li>
             Welcome, <span>{storeUser?.name}</span>{' '}
+          </li>
+          <li>
+            <button className='btn' type='button' onClick={handleTaskBarToggle}>
+              {isTaskOpen ? 'Hide TaskBar' : 'Show TaskBar'}
+            </button>
           </li>
 
           <li>
