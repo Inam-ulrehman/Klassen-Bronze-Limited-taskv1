@@ -98,3 +98,20 @@ export const removeOfficeAllTaskFromLocalStorage = () => {
 }
 
 // ============================
+// Agents Data handle
+
+export const setAgentsInLocalStorage = (agents) => {
+  localStorage.setItem('agents', JSON.stringify(agents))
+}
+
+export const getAgentsFromLocalStorage = () => {
+  const result = localStorage.getItem('agents')
+  const agents = result && JSON.parse(result)
+  return agents
+}
+
+export const removeAgentsAllTaskFromLocalStorage = () => {
+  localStorage.removeItem('agents')
+}
+
+// ============================

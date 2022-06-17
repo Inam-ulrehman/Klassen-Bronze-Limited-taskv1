@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import agentsTaskSlice from './features/user/task/agentsTaskSlice'
 import jeffTaskSlice from './features/user/task/jeffTaskSlice'
 import officeTaskSlice from './features/user/task/officeTaskSlice'
 import salesRepTaskSlice from './features/user/task/salesRepTaskSlice'
@@ -14,6 +15,7 @@ const store = configureStore({
     tom: tomTaskSlice,
     salesRep: salesRepTaskSlice,
     office: officeTaskSlice,
+    agents: agentsTaskSlice,
   },
 })
 
