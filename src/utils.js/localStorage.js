@@ -63,3 +63,21 @@ export const removeTomAllTaskFromLocalStorage = () => {
 }
 
 // ============================
+
+// SalesRep Data handle
+
+export const setSalesRepInLocalStorage = (salesRep) => {
+  localStorage.setItem('salesRep', JSON.stringify(salesRep))
+}
+
+export const getSalesRepFromLocalStorage = () => {
+  const result = localStorage.getItem('salesRep')
+  const salesRep = result && JSON.parse(result)
+  return salesRep
+}
+
+export const removeSalesRepAllTaskFromLocalStorage = () => {
+  localStorage.removeItem('salesRep')
+}
+
+// ============================
