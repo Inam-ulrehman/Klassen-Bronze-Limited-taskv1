@@ -21,6 +21,9 @@ const Navbar = () => {
       <div className='nav-bar'>
         <ul className='nav-container'>
           <li>
+            Welcome, <span>{storeUser?.name}</span>{' '}
+          </li>
+          <li>
             <button className='btn' type='button' onClick={handleTaskBarToggle}>
               {isTaskOpen ? 'Hide TaskBar' : 'Show TaskBar'}
             </button>
@@ -37,10 +40,6 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
-
-        <p className='title'>
-          Welcome, <span>{storeUser?.name}</span>
-        </p>
       </div>
     </Wrapper>
   )
@@ -51,7 +50,6 @@ const Wrapper = styled.nav`
   background-color: var(--primary-1);
   .nav-container {
     display: flex;
-
     @media (max-width: 678px) {
       justify-content: space-between;
     }
@@ -59,12 +57,6 @@ const Wrapper = styled.nav`
       flex-direction: row-reverse;
     }
     li {
-      button {
-        font-size: 1.4rem;
-      }
-      a {
-        font-size: 1.4rem;
-      }
       @media (min-width: 678px) {
         margin-right: 2rem;
       }

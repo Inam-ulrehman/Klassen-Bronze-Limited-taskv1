@@ -46,7 +46,7 @@ html {
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
   /* rest of the vars */
-  --backgroundColor: var(--primary-2);
+  --backgroundColor: var(--grey-05);
   --textColor: var(--grey-9);
   --radius: 0.25rem;
   --letterSpacing: 1px;
@@ -127,21 +127,19 @@ ul {
   padding: 0;
 }
 
-/* .img {
-  width: 250px;
-  height: 200px;
+.img {
+  /* width: 250px;
+  height: 200px; */
   max-width: 100%;
   display: block;
   object-fit: cover;
 }
 .img-container {
-  max-width: 300px;
+  /* max-width: 300px;
   max-height: 300px;
-
-  margin: 0 auto;
-
+  margin: 0 auto; */
   overflow: hidden;
-} */
+}
 
 /* buttons */
 
